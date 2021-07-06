@@ -3,24 +3,26 @@ function showWeather(response) {
   currentTemperature.innerHTML = Math.round(response.data.main.temp);
   let cityElement = document.querySelector("#city-element");
   cityElement.innerHTML = response.data.name;
-  document.querySelector("#wind-speed").innerHTML = Math.round(
-    response.data.wind.speed
-  );
-  document.querySelector("#humidity").innerHTML = Math.round(
+  document.querySelector("#wind-speed").innerHTML = `${Math.round(
+    response.data.wind.speed * 2.237
+  )} mph`;
+  document.querySelector("#humidity").innerHTML = `${Math.round(
     response.data.main.humidity
-  );
-  document.querySelector("#pressure").innerHTML = Math.round(
+  )}%`;
+  document.querySelector("#pressure").innerHTML = `${Math.round(
     response.data.main.pressure
-  );
-  document.querySelector("#max").innerHTML = Math.round(
+  )} hPa`;
+  document.querySelector("#max").innerHTML = `${Math.round(
     response.data.main.temp_max
-  );
-  document.querySelector("#min").innerHTML = Math.round(
+  )}°`;
+  document.querySelector("#min").innerHTML = `${Math.round(
     response.data.main.temp_min
-  );
-  document.querySelector("#feels-like").innerHTML = Math.round(
+  )}°`;
+  document.querySelector("#feels-like").innerHTML = `${Math.round(
     response.data.main.feels_like
-  );
+  )}°`;
+  document.querySelector("#weather-description").innerHTML =
+    response.data.weather[0].description;
 }
 function enterCity(event) {
   event.preventDefault();
@@ -47,6 +49,10 @@ currentLocation.addEventListener("click", getCurrentPosition);
 
 let searchCity = document.querySelector("#search-city");
 searchCity.addEventListener("submit", enterCity);
+
+let apiKey = "0923e12b896425d5960c3ad97497e0ee";
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=London&appid=${apiKey}&units=metric`;
+axios.get(apiUrl).then(showWeather);
 
 function formatDate() {
   let currentTime = new Date();

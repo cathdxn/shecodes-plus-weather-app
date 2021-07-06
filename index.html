@@ -40,7 +40,7 @@
                 </div>
       <div class="row">
         <div class="col-6">
-          <h1 id="city-element"></h1>
+          <h1 id="city-element">Enter city</h1>
           <div class="date"></div>
           <div class="sunrise">Sunrise <span id="sunrise">4:44</span> | Sunset <span id="sunset">21:00</span></div>
         </div>
@@ -50,15 +50,15 @@
               <i class="fas fa-cloud-moon "></i>
             </div>
             <div class="col-7 current-temperature">
-                <span id="current-temperature">9</span>º
+                <span id="current-temperature"></span>
             </div>
           </div> 
           </div>
           <div class="row">
             <ul class="col-8 weather-details">
-              <li><i class="fas fa-wind"></i> <span id="wind-speed"></span> mph</li>
-              <li>Humidity: <span id="humidity"></span>%</li>
-              <li>Pressure: <span id="pressure"></span> hPa</li>
+              <li><i class="fas fa-wind"></i> <span id="wind-speed"></span></li>
+              <li>Humidity: <span id="humidity"></span></li>
+              <li>Pressure: <span id="pressure"></span></li>
             </ul>
             <ul class="col-3 temperature-details">
               <li>Feels like:</li>
@@ -66,11 +66,12 @@
               <li>Min:</li>
             </ul>              
             <ul class="col-1 temperature-details">
-              <li><span id="feels-like"></span>º</li>
-              <li><span id="max"></span>º</li>
-              <li><span id="min"></span>º</li>
+              <li><span id="feels-like"></span></li>
+              <li><span id="max"></span></li>
+              <li><span id="min"></span></li>
             </ul> 
-          </div>             
+          </div> 
+          <div class="weather-description" id="weather-description">Weather description</div>            
       </div>
       <div class="forecast">Next five days...</div>
       <div class="row next-week">
@@ -93,9 +94,10 @@
           Tue<br /><i class="fas fa-cloud-sun"></i><br /><strong>20º</strong
           ><br />11º
         </div>
+
       </div>
     </div>
-        <div class="source"><a class="source-link" href="https://github.com/cathdxn/shecodes-plus-weather-app" target="_blank">Open-source code</a> by Catherine Dixon</div>
+    <div class="source"><a class="source-link" href="https://github.com/cathdxn/shecodes-plus-weather-app" target="_blank">Open-source code</a> by Catherine Dixon</div>
     <script src="src/index.js">
     </script>
   </body>
