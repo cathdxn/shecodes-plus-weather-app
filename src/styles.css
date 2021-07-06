@@ -101,3 +101,14 @@ li {
   color: #000;
   opacity: 0.8;
 }
+.source {
+  max-width: 450px;
+  padding-left: 10px;
+  margin: 10px auto;
+  font-family: "Poppins", sans-serif;
+  border-radius: 3%;
+  font-size: 12px;
+}
+.source-link {
+  text-decoration: none;
+}
