@@ -1,6 +1,46 @@
+function formatDate(timestamp) {
+  let currentDate = new Date(timestamp);
+  let date = currentDate.getDate();
+  let hours = currentDate.getHours();
+  if (hours < 10) {
+    hours = "0" + hours;
+  }
+  let minutes = currentDate.getMinutes();
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[currentDate.getDay()];
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let month = months[currentDate.getMonth()];
+  return `${day}, ${month} ${date} | ${hours}:${minutes}`;
+}
+
 function showWeather(response) {
   let currentTemperature = document.querySelector("#current-temperature");
-  currentTemperature.innerHTML = Math.round(response.data.main.temp);
+  currentTemperature.innerHTML = `${Math.round(response.data.main.temp)}°`;
   let cityElement = document.querySelector("#city-element");
   cityElement.innerHTML = response.data.name;
   document.querySelector("#wind-speed").innerHTML = `${Math.round(
@@ -23,6 +63,9 @@ function showWeather(response) {
   )}°`;
   document.querySelector("#weather-description").innerHTML =
     response.data.weather[0].description;
+  document.querySelector("#date").innerHTML = formatDate(
+    response.data.dt * 1000
+  );
 }
 function enterCity(event) {
   event.preventDefault();
@@ -53,48 +96,3 @@ searchCity.addEventListener("submit", enterCity);
 let apiKey = "0923e12b896425d5960c3ad97497e0ee";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=London&appid=${apiKey}&units=metric`;
 axios.get(apiUrl).then(showWeather);
-
-function formatDate() {
-  let currentTime = new Date();
-  let currentDay = currentTime.getDay();
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  let day = days[currentDay];
-  let hours = currentTime.getHours();
-  if (hours < 10) {
-    hours = "0" + hours;
-  }
-  let minutes = currentTime.getMinutes();
-  if (minutes < 10) {
-    minutes = "0" + minutes;
-  }
-  let date = currentTime.getDate();
-  let currentMonth = currentTime.getMonth();
-  let months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  let month = months[currentMonth];
-  return `${day},  ${month} ${date} | ${hours}:${minutes}`;
-}
-
-let currentTime = new Date();
-let currentDate = document.querySelector(".date");
-currentDate.innerHTML = formatDate(currentTime);
