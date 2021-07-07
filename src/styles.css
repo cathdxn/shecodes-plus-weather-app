@@ -28,12 +28,12 @@ li {
   margin-bottom: 5px;
 }
 .btn {
-  background: #969494;
+  background: #48484a;
   color: white;
   border: none;
 }
 .btn:hover {
-  background: #318bac;
+  background: #969494;
 }
 .date {
   font-size: 12px;
@@ -71,7 +71,7 @@ li {
   margin: auto;
   text-align: center;
   padding: 5px;
-  background: #969494;
+  background: #48484a;
   color: white;
   font-weight: 200;
 }
