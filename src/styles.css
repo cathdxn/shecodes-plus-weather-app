@@ -16,18 +16,19 @@ li {
   margin: 7px 0px;
 }
 .body {
-  background-color: #f7f7f7;
+  background: linear-gradient(to top, #30cfd0 0%, #330867 100%);
   padding: 10px 20px 20px 20px;
   max-width: 450px;
   margin: 10px auto;
   font-family: "Poppins", sans-serif;
   border-radius: 3%;
+  color: rgb(214, 211, 211);
 }
 .search-city {
   margin-bottom: 5px;
 }
 .btn {
-  background: lightgrey;
+  background: rgb(185, 185, 185);
   color: white;
   border: none;
 }
@@ -52,8 +53,7 @@ li {
   padding: 1px 5px;
   border-radius: 100%;
 }
-.weather-image {
-  font-size: 74px;
+.weather-icon {
   text-align: right;
 }
 .temperature-details {
@@ -94,12 +94,17 @@ li {
   text-decoration: none;
   padding: 5px;
   font-size: 12px;
+  color: rgb(214, 211, 211);
 }
-#celcius,
-#farenheit {
+.celcius,
+.farenheit {
   text-decoration: none;
-  color: #000;
-  opacity: 0.8;
+  color: rgb(214, 211, 211);
+}
+.current-location:hover,
+.celcius:hover,
+.farenheit:hover {
+  color: #3195b2;
 }
 .source {
   max-width: 450px;

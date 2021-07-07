@@ -39,6 +39,7 @@ function formatDate(timestamp) {
 }
 
 function showWeather(response) {
+  console.log(response.data);
   let currentTemperature = document.querySelector("#current-temperature");
   currentTemperature.innerHTML = `${Math.round(response.data.main.temp)}°`;
   let cityElement = document.querySelector("#city-element");
@@ -66,6 +67,8 @@ function showWeather(response) {
   document.querySelector("#date").innerHTML = formatDate(
     response.data.dt * 1000
   );
+  document.querySelector("#weather-icon").setAttribute ("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`) =
+    response.data.weather[0].icon;
 }
 function enterCity(event) {
   event.preventDefault();
