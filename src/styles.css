@@ -28,12 +28,12 @@ li {
   margin-bottom: 5px;
 }
 .btn {
-  background: rgb(185, 185, 185);
+  background: #969494;
   color: white;
   border: none;
 }
 .btn:hover {
-  background: #969494;
+  background: #318bac;
 }
 .date {
   font-size: 12px;
@@ -61,7 +61,6 @@ li {
 }
 .forecast {
   padding-bottom: 10px;
-  opacity: 0.7;
 }
 .next-week {
   width: fit-page;
@@ -101,10 +100,12 @@ li {
   text-decoration: none;
   color: rgb(214, 211, 211);
 }
-.current-location:hover,
+.current-location:hover {
+  color: #3195b2;
+}
 .celcius:hover,
 .farenheit:hover {
-  color: #3195b2;
+  color: #ec886d;
 }
 .source {
   max-width: 450px;
