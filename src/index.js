@@ -39,11 +39,13 @@ function formatDate(timestamp) {
 }
 
 function showWeather(response) {
-  console.log(response.data);
-  let currentTemperature = document.querySelector("#current-temperature");
-  currentTemperature.innerHTML = `${Math.round(response.data.main.temp)}°`;
   let cityElement = document.querySelector("#city-element");
   cityElement.innerHTML = response.data.name;
+  celciusTemperature = response.data.main.temp;
+  celciusTemperatureFeel = response.data.main.feels_like;
+  celciusTemperatureMax = response.data.main.temp_max;
+  celciusTemperatureMin = response.data.main.temp_min;
+  document.querySelector("#current-temperature").innerHTML = `${Math.round(celciusTemperature)}°`;
   document.querySelector("#wind-speed").innerHTML = `${Math.round(
     response.data.wind.speed * 2.237
   )} mph`;
@@ -53,15 +55,9 @@ function showWeather(response) {
   document.querySelector("#pressure").innerHTML = `${Math.round(
     response.data.main.pressure
   )} hPa`;
-  document.querySelector("#max").innerHTML = `${Math.round(
-    response.data.main.temp_max
-  )}°`;
-  document.querySelector("#min").innerHTML = `${Math.round(
-    response.data.main.temp_min
-  )}°`;
-  document.querySelector("#feels-like").innerHTML = `${Math.round(
-    response.data.main.feels_like
-  )}°`;
+  document.querySelector("#max").innerHTML = `${Math.round(celciusTemperatureMax)}°`;
+  document.querySelector("#min").innerHTML = `${Math.round(celciusTemperatureMin)}°`;
+  document.querySelector("#feels-like").innerHTML = `${Math.round(celciusTemperatureFeel)}°`;
   document.querySelector("#weather-description").innerHTML =
     response.data.weather[0].description;
   document.querySelector("#date").innerHTML = formatDate(
@@ -72,9 +68,8 @@ function showWeather(response) {
 }
 function enterCity(event) {
   event.preventDefault();
-  let cityElement = document.querySelector("#city-element");
   let cityInput = document.querySelector("#input-city");
-  cityElement.innerHTML = cityInput.value;
+  document.querySelector("#city-element").innerHTML = cityInput.value;
   let apiKey = "0923e12b896425d5960c3ad97497e0ee";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&appid=${apiKey}&units=metric`;
 
@@ -90,6 +85,27 @@ function getCurrentPosition(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(retrievePosition);
 }
+
+function convertToFahrenheit(event) {
+event.preventDefault();
+let fahrenheitTemperture = (celciusTemperature * 9) / 5 + 32;
+let fahrenheitFeelsLike = (celciusTemperatureFeel * 9) / 5 + 32;
+let fahrenheitMax = (celciusTemperatureMax * 9) / 5 + 32;
+let fahrenheitMin = (celciusTemperatureMin * 9) / 5 + 32;
+document.querySelector("#current-temperature").innerHTML = `${Math.round(fahrenheitTemperture)}°`;
+document.querySelector("#feels-like").innerHTML = `${Math.round(fahrenheitFeelsLike)}°`;
+document.querySelector("#max").innerHTML = `${Math.round(fahrenheitMax)}°`;
+document.querySelector("#min").innerHTML = `${Math.round(fahrenheitMin)}°`;
+
+}
+function displayCelciusTemperature(event) {
+  event.preventDefault();
+  document.querySelector("#current-temperature").innerHTML = `${Math.round(celciusTemperature)}°`;
+  document.querySelector("#feels-like").innerHTML = `${Math.round(celciusTemperatureFeel)}°`;
+  document.querySelector("#max").innerHTML = `${Math.round(celciusTemperatureMax)}°`;
+  document.querySelector("#min").innerHTML = `${Math.round(celciusTemperatureMin)}°`;
+}
+
 let currentLocation = document.querySelector("#find-location");
 currentLocation.addEventListener("click", getCurrentPosition);
 
@@ -99,3 +115,11 @@ searchCity.addEventListener("submit", enterCity);
 let apiKey = "0923e12b896425d5960c3ad97497e0ee";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=London&appid=${apiKey}&units=metric`;
 axios.get(apiUrl).then(showWeather);
+
+document.querySelector("#fahrenheit").addEventListener("click", convertToFahrenheit);
+document.querySelector("#celcius").addEventListener("click", displayCelciusTemperature);
+
+let celciusTemperature = null;
+let celciusTemperatureFeel = null;
+let celciusTemperatureMax = null;
+let celciusTemperatureMin = null;

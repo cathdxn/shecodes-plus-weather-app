@@ -96,7 +96,7 @@ li {
   color: rgb(214, 211, 211);
 }
 .celcius,
-.farenheit {
+.fahrenheit {
   text-decoration: none;
   color: rgb(214, 211, 211);
 }
@@ -104,7 +104,7 @@ li {
   color: #3195b2;
 }
 .celcius:hover,
-.farenheit:hover {
+.fahrenheit:hover {
   color: #ec886d;
 }
 .source {
