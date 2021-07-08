@@ -75,6 +75,12 @@ li {
   color: white;
   font-weight: 200;
 }
+.forecast-max {
+  font-weight: bold;
+}
+.forecast-min {
+  font-weight: light;
+}
 .current-temperature {
   font-size: 60px;
   text-align: right;
