@@ -76,8 +76,8 @@ li {
   font-weight: 200;
 }
 .current-temperature {
-  font-size: 66px;
-  text-align: left;
+  font-size: 60px;
+  text-align: right;
 }
 
 .unit {
