@@ -20,7 +20,6 @@ li {
   margin: 10px auto;
   font-family: "Poppins", sans-serif;
   border-radius: 3%;
-  font-size: 12px;
 }
 .body {
   background: linear-gradient(to top, #30cfd0 0%, #330867 100%);
@@ -128,6 +127,7 @@ li {
 }
 .source-link {
   text-decoration: none;
+  font-size: 12px;
 }
 .weather-description {
   font-size: 20px;
