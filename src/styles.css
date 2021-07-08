@@ -59,18 +59,16 @@ li {
 .temperature-details {
   text-align: right;
 }
-.forecast {
+.later {
   padding-bottom: 10px;
 }
-.next-week {
-  width: fit-page;
-}
+
 .days {
   border: none;
-  border-radius: 23%;
+  border-radius: 3%;
   margin: auto;
+  padding: 10px 0px;
   text-align: center;
-  padding: 5px;
   background: #48484a;
   color: white;
   font-weight: 200;
