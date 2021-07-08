@@ -38,14 +38,31 @@ function formatDate(timestamp) {
   return `${day}, ${month} ${date} | ${hours}:${minutes}`;
 }
 
+function formatSunriseSunset(timestamp) {
+  let currentDate = new Date(timestamp);
+  let hours = currentDate.getHours();
+  if (hours < 10) {
+    hours = "0" + hours;
+  }
+  let minutes = currentDate.getMinutes();
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+
+  return `${hours}:${minutes}`;
+}
+
 function showWeather(response) {
+  console.log(response.data);
   let cityElement = document.querySelector("#city-element");
   cityElement.innerHTML = response.data.name;
   celciusTemperature = response.data.main.temp;
   celciusTemperatureFeel = response.data.main.feels_like;
   celciusTemperatureMax = response.data.main.temp_max;
   celciusTemperatureMin = response.data.main.temp_min;
-  document.querySelector("#current-temperature").innerHTML = `${Math.round(celciusTemperature)}°`;
+  document.querySelector("#current-temperature").innerHTML = `${Math.round(
+    celciusTemperature
+  )}°`;
   document.querySelector("#wind-speed").innerHTML = `${Math.round(
     response.data.wind.speed * 2.237
   )} mph`;
@@ -55,16 +72,32 @@ function showWeather(response) {
   document.querySelector("#pressure").innerHTML = `${Math.round(
     response.data.main.pressure
   )} hPa`;
-  document.querySelector("#max").innerHTML = `${Math.round(celciusTemperatureMax)}°`;
-  document.querySelector("#min").innerHTML = `${Math.round(celciusTemperatureMin)}°`;
-  document.querySelector("#feels-like").innerHTML = `${Math.round(celciusTemperatureFeel)}°`;
+  document.querySelector("#max").innerHTML = `${Math.round(
+    celciusTemperatureMax
+  )}°`;
+  document.querySelector("#min").innerHTML = `${Math.round(
+    celciusTemperatureMin
+  )}°`;
+  document.querySelector("#feels-like").innerHTML = `${Math.round(
+    celciusTemperatureFeel
+  )}°`;
   document.querySelector("#weather-description").innerHTML =
     response.data.weather[0].description;
   document.querySelector("#date").innerHTML = formatDate(
     response.data.dt * 1000
   );
-  document.querySelector("#weather-icon").setAttribute ("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`) =
-    response.data.weather[0].icon;
+  document.querySelector("#sunrise").innerHTML = formatSunriseSunset(
+    response.data.sys.sunrise * 1000
+  );
+  document.querySelector("#sunset").innerHTML = formatSunriseSunset(
+    response.data.sys.sunset * 1000
+  );
+  document
+    .querySelector("#weather-icon")
+    .setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
 }
 function enterCity(event) {
   event.preventDefault();
@@ -87,23 +120,38 @@ function getCurrentPosition(event) {
 }
 
 function convertToFahrenheit(event) {
-event.preventDefault();
-let fahrenheitTemperture = (celciusTemperature * 9) / 5 + 32;
-let fahrenheitFeelsLike = (celciusTemperatureFeel * 9) / 5 + 32;
-let fahrenheitMax = (celciusTemperatureMax * 9) / 5 + 32;
-let fahrenheitMin = (celciusTemperatureMin * 9) / 5 + 32;
-document.querySelector("#current-temperature").innerHTML = `${Math.round(fahrenheitTemperture)}°`;
-document.querySelector("#feels-like").innerHTML = `${Math.round(fahrenheitFeelsLike)}°`;
-document.querySelector("#max").innerHTML = `${Math.round(fahrenheitMax)}°`;
-document.querySelector("#min").innerHTML = `${Math.round(fahrenheitMin)}°`;
-
+  event.preventDefault();
+  let fahrenheitTemperture = (celciusTemperature * 9) / 5 + 32;
+  let fahrenheitFeelsLike = (celciusTemperatureFeel * 9) / 5 + 32;
+  let fahrenheitMax = (celciusTemperatureMax * 9) / 5 + 32;
+  let fahrenheitMin = (celciusTemperatureMin * 9) / 5 + 32;
+  document.querySelector("#celcius").classList.add("active");
+  document.querySelector("#fahrenheit").classList.remove("active");
+  document.querySelector("#current-temperature").innerHTML = `${Math.round(
+    fahrenheitTemperture
+  )}°`;
+  document.querySelector("#feels-like").innerHTML = `${Math.round(
+    fahrenheitFeelsLike
+  )}°`;
+  document.querySelector("#max").innerHTML = `${Math.round(fahrenheitMax)}°`;
+  document.querySelector("#min").innerHTML = `${Math.round(fahrenheitMin)}°`;
 }
 function displayCelciusTemperature(event) {
   event.preventDefault();
-  document.querySelector("#current-temperature").innerHTML = `${Math.round(celciusTemperature)}°`;
-  document.querySelector("#feels-like").innerHTML = `${Math.round(celciusTemperatureFeel)}°`;
-  document.querySelector("#max").innerHTML = `${Math.round(celciusTemperatureMax)}°`;
-  document.querySelector("#min").innerHTML = `${Math.round(celciusTemperatureMin)}°`;
+  document.querySelector("#celcius").classList.remove("active");
+  document.querySelector("#fahrenheit").classList.add("active");
+  document.querySelector("#current-temperature").innerHTML = `${Math.round(
+    celciusTemperature
+  )}°`;
+  document.querySelector("#feels-like").innerHTML = `${Math.round(
+    celciusTemperatureFeel
+  )}°`;
+  document.querySelector("#max").innerHTML = `${Math.round(
+    celciusTemperatureMax
+  )}°`;
+  document.querySelector("#min").innerHTML = `${Math.round(
+    celciusTemperatureMin
+  )}°`;
 }
 
 let currentLocation = document.querySelector("#find-location");
@@ -116,8 +164,12 @@ let apiKey = "0923e12b896425d5960c3ad97497e0ee";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=London&appid=${apiKey}&units=metric`;
 axios.get(apiUrl).then(showWeather);
 
-document.querySelector("#fahrenheit").addEventListener("click", convertToFahrenheit);
-document.querySelector("#celcius").addEventListener("click", displayCelciusTemperature);
+document
+  .querySelector("#fahrenheit")
+  .addEventListener("click", convertToFahrenheit);
+document
+  .querySelector("#celcius")
+  .addEventListener("click", displayCelciusTemperature);
 
 let celciusTemperature = null;
 let celciusTemperatureFeel = null;

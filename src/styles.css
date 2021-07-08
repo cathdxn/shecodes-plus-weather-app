@@ -86,9 +86,7 @@ li {
   padding: 5px 12px 0px 0px;
   text-align: right;
 }
-.unit:hover {
-  cursor: pointer;
-}
+
 .current-location {
   text-decoration: none;
   padding: 5px;
@@ -100,13 +98,20 @@ li {
   text-decoration: none;
   color: rgb(214, 211, 211);
 }
+.celcius:hover,
+.fahrenheit:hover {
+  text-decoration: none;
+  color: rgb(214, 211, 211);
+  cursor: default;
+}
+.active:hover {
+  color: #ec886d;
+  cursor: pointer;
+}
 .current-location:hover {
   color: #3195b2;
 }
-.celcius:hover,
-.fahrenheit:hover {
-  color: #ec886d;
-}
+
 .source {
   max-width: 450px;
   padding-left: 10px;
