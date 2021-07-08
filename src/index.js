@@ -35,7 +35,7 @@ function formatDate(timestamp) {
     "December",
   ];
   let month = months[currentDate.getMonth()];
-  return `${day}, ${month} ${date} | ${hours}:${minutes}`;
+  return `Last updated: ${hours}:${minutes}<br/>${day}, ${month} ${date}`;
 }
 
 function formatSunriseSunset(timestamp) {
