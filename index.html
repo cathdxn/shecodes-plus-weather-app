@@ -27,17 +27,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Poppins:wght@200;300;400&display=swap" rel="stylesheet">  <body>
-    <div class="container body">
+    <div class="body-wrapper">
+  <div class="container body">
      <form class="d-flex" id="search-city">
         <input id="input-city" class="form-control me-2 search-city" type="search" placeholder="Enter city" aria-label="Search" autofocus="on" autocomplete="off">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
       </form>
       <div class="row">
-      <a href="#" class="col-10 current-location" id="find-location"><i class="fas fa-map-marker-alt"></i> Find my location</a>
-      <div class="col-2 unit" id="unit"><a href="#" id="celcius" class="celcius">ºC</a>
-                | <a href="#" id="fahrenheit" class="fahrenheit active">ºF</a></div>
-                </div>
+      <a href="#" class="current-location" id="find-location"><i class="fas fa-map-marker-alt"></i> Find my location</a>
       <div class="row">
         <div class="col-7">
           <h1 id="city-element">Enter city</h1>
@@ -72,7 +70,8 @@
       <div id="days">
       </div>
     </div>
-    <div class="source"><a class="source-link" href="https://github.com/cathdxn/shecodes-plus-weather-app" target="_blank">Open-source code</a> by Catherine Dixon</div>
+    </div>
+    <div class="source"><a class="source-link" href="https://github.com/cathdxn/shecodes-plus-weather-app" target="_blank">Open-source code</a> by Catherine Dixon</div></div>
     <script src="src/index.js">
     </script>
   </body>
